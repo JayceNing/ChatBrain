@@ -1,0 +1,37 @@
+{
+  "name": "vue",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host 192.168.0.59",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
+    "@fortawesome/fontawesome-free": "^6.4.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/vue-fontawesome": "^3.0.3",
+    "animate.css": "^4.1.1",
+    "axios": "^1.4.0",
+    "base-64": "^1.0.0",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.3.1",
+    "element-plus": "^2.3.6",
+    "github-markdown-css": "^5.2.0",
+    "highlight.js": "^11.8.0",
+    "openai": "^3.3.0",
+    "showdown": "^2.1.0",
+    "typed.js": "^2.0.16",
+    "vue": "^3.3.4",
+    "vue-typed-js": "^0.1.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "terser": "^5.19.2",
+    "vite": "^4.3.9",
+    "vite-plugin-javascript-obfuscator": "^3.0.3"
+  }
+}
