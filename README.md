@@ -1,4 +1,10 @@
-# ChatBrain AI 学术助手：AI Academic Assistant V2.0 
+# ChatBrain AI 学术助手 V2.0 
+
+<div style="font-size: 1.5rem;">
+  <a href="./README.md">中文</a> |
+  <a href="./readme_en.md">English</a>
+</div>
+</br>
 
 本项目已获
 
@@ -116,6 +122,8 @@ python main.py
 
 ## 项目引用
 
+如果你觉得这个仓库很有价值，请给它打个星!
+
 如果您使用此项目中的数据或代码，请引用此项目。
 
 ```
@@ -125,6 +133,10 @@ python main.py
   year = {2023},
   publisher = {GitHub},
   journal = {GitHub repository},
-  howpublished = {\url{https://github.com/BUPT-NingXinyu/ChatBrain}},
+  howpublished = {\url{https://github.com/JayceNing/ChatBrain}},
 }
 ```
+
+## 致谢
+
+* 本项目的论文总结部分代码主要建立在 [ChatPaper](https://github.com/kaixindelele/ChatPaper) 的基础上，感谢开源！
