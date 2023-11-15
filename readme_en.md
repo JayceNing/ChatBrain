@@ -98,6 +98,12 @@ cd ./chat_server
 pip install -r requirements.txt
 ```
 
+Replace the server IP address with the actual deployed IP:
+
+```
+SERVER_ADDRESS = ''  # Replace with your IP address
+```
+
 To start the service, use the following commands:
 
 ```
