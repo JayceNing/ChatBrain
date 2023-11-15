@@ -9,7 +9,8 @@ type UserClaim struct {
 }
 
 var JwtKey = "brainbase-team-key"
-var MailPassword = "Nxy99113"
+var MailAddress = ""
+var MailPassword = ""
 
 // 验证码长度
 var CodeLength = 6

@@ -21,16 +21,7 @@ func InitDB() {
 	password := viper.GetString("datasource.password")
 	charset := viper.GetString("datasource.charset")
 	println(username)
-<<<<<<< HEAD
-=======
-	println(fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s&parseTime=True&loc=Local",
-	username,
-	password,
-	host,
-	port,
-	database,
-	charset))
->>>>>>> 20230902
+
 	args := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s&parseTime=True&loc=Local",
 		username,
 		password,
