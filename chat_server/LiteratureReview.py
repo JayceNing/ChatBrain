@@ -37,11 +37,6 @@ def extract_keywords_from_md(md_content):
             keywords = re.split(r'[,;；、，·]', keywords_str)
             cleaned_keywords = []
             for keyword in keywords:
-                # 去除半边括号，但保留完整的括号对
-                # if keyword.count('(') != keyword.count(')'):
-                #     keyword = re.sub(r'\(|\)', '', keyword)
-                # if keyword.count('（') != keyword.count('）'):
-                #     keyword = re.sub(r'\（|\）', '', keyword)
                 cleaned_keywords.append(keyword.strip())
             keywords_list.extend(cleaned_keywords)
             
@@ -151,9 +146,6 @@ def cul_paper_num_per_month(data):
         # 提取年份
         year = time.split('-')[0]
 
-        # 统计关键词的数量
-        # keyword_count = len(keywords)
-
         # 将关键词数量与年份关联起来
         if year in yearly_frequency:
             yearly_frequency[year] += 1
@@ -229,10 +221,6 @@ def extract_info_from_md(md_content):
             keywords = re.split(r'[,;；、，·]', keywords_str)
             cleaned_keywords = []
             for keyword in keywords:
-                # if keyword.count('(') != keyword.count(')'):
-                #     keyword = re.sub(r'\(|\)', '', keyword)
-                # if keyword.count('（') != keyword.count('）'):
-                #     keyword = re.sub(r'\（|\）', '', keyword)
                 cleaned_keywords.append(keyword.strip())
             keywords_list.extend(cleaned_keywords)
     

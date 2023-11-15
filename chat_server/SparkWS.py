@@ -80,15 +80,6 @@ async def websocket_endpoint(websocket: WebSocket):
         # await websocket.close()
 
 if __name__ == '__main__':
-    # text.clear
-    # while(1):
-    #     Input = input("\n" +"我:")
-    #     question = checklen(getText("user",Input))
-    #     SparkApi.answer =""
-    #     print("星火:",end = "")
-    #     SparkApi.main(appid,api_key,api_secret,Spark_url,domain,question)
-    #     getText("assistant",SparkApi.answer)
-    #     # print(str(text))
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],  # 允许所有来源访问，实际中根据需要配置

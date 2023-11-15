@@ -29,7 +29,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from SparkApi_none_stream import create as SparkCreate
 
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = ""
 
 ArxivParams = namedtuple(
     "ArxivParams",
@@ -433,9 +433,6 @@ class Reader:
         #print(titles)
         valid_titles = [self.validateTitle(title) for title in titles]
         print(valid_titles)
-        #print(valid_titles)
-        #print(list_articles()['gcarticles'])
-        #print([row[0] for row in list_articles()['gcarticles']])
         exist_articles = [row[0] for row in list_articles('','')['gcarticles']]
         print(exist_articles)
 
@@ -456,14 +453,6 @@ class Reader:
             export_path = os.path.join(self.root_path, 'export')
             for i in range(len(user_titles)):
                 db.insert("gcarticles",f"('{self.validateTitle(user_titles[i])[:80]}','{os.path.join(export_path,self.validateTitle(user_titles[i])[:80])}',0,'{args.query}','{args.key_word}', 0, '{useremail}')")
-        # print(result_index)
-        # print('------------------------')
-        # print(titles)
-        # print('------------------------')
-        # print([titles[i] for i in result_index])
-        # print('------------------------')
-        # print([links[i] for i in result_index])
-        # print([dates[i] for i in result_index])
 
         titles = [titles[i] for i in result_index]
         links = [links[i] for i in result_index]
@@ -671,10 +660,6 @@ class Reader:
                     stop=tenacity.stop_after_attempt(5),
                     reraise=True)
     def chat_conclusion(self, text, model, conclusion_prompt_token=1200):
-        #openai.api_key = self.chat_api_list[self.cur_api]
-        # openai.api_key = "none"
-        # self.cur_api += 1
-        # self.cur_api = 0 if self.cur_api >= len(self.chat_api_list) - 1 else self.cur_api
         text_token = len(self.encoding.encode(text))
         clip_text_index = int(len(text) * (self.max_token_num - conclusion_prompt_token) / text_token)
         clip_text = text[:clip_text_index]
@@ -717,20 +702,12 @@ class Reader:
 
         result = self.modelChat(messages, model)
         print("conclusion_result:\n", result)
-        # print("prompt_token_used:", response.usage.prompt_tokens,
-        #       "completion_token_used:", response.usage.completion_tokens,
-        #       "total_token_used:", response.usage.total_tokens)
-        # print("response_time:", response.response_ms / 1000.0, 's')
         return result
 
     @tenacity.retry(wait=tenacity.wait_exponential(multiplier=1, min=4, max=10),
                     stop=tenacity.stop_after_attempt(5),
                     reraise=True)
     def chat_method(self, text, model, method_prompt_token=1200):
-        ## openai.api_key = self.chat_api_list[self.cur_api]
-        # openai.api_key = "none"
-        # self.cur_api += 1
-        # self.cur_api = 0 if self.cur_api >= len(self.chat_api_list) - 1 else self.cur_api
         text_token = len(self.encoding.encode(text))
         clip_text_index = int(len(text) * (self.max_token_num - method_prompt_token) / text_token)
         clip_text = text[:clip_text_index]
@@ -778,20 +755,12 @@ class Reader:
 
         result = self.modelChat(messages, model)
         print("method_result:\n", result)
-        # print("prompt_token_used:", response.usage.prompt_tokens,
-        #       "completion_token_used:", response.usage.completion_tokens,
-        #       "total_token_used:", response.usage.total_tokens)
-        # print("response_time:", response.response_ms / 1000.0, 's')
         return result
 
     @tenacity.retry(wait=tenacity.wait_exponential(multiplier=1, min=4, max=10),
                     stop=tenacity.stop_after_attempt(5),
                     reraise=True)
     def chat_summary(self, text, model, summary_prompt_token=1100):
-        # openai.api_key = self.chat_api_list[self.cur_api]
-        # openai.api_key = "none"
-        # self.cur_api += 1
-        # self.cur_api = 0 if self.cur_api >= len(self.chat_api_list) - 1 else self.cur_api
         text_token = len(self.encoding.encode(text))
         print('text_token',text_token)
         clip_text_index = int(len(text) * (self.max_token_num - summary_prompt_token) / text_token)
@@ -860,10 +829,6 @@ class Reader:
         
         result = self.modelChat(messages, model)
         print("summary_result:\n", result)
-        # print("prompt_token_used:", response.usage.prompt_tokens,
-        #       "completion_token_used:", response.usage.completion_tokens,
-        #       "total_token_used:", response.usage.total_tokens)
-        # print("response_time:", response.response_ms / 1000.0, 's')
         return result
 
     def export_to_markdown(self, text, file_name, mode='w'):
@@ -1005,45 +970,7 @@ def read_md(
             return {"error": "File not found."}
             
         return {"error": "File not found."}
-  
-def spark_translate(
-    filename: str = Body(..., description="path", example="/home/huawei/nxy/bbft/ChatPaper/export/In-context Autoencoder for Context Compression in a Large Language Model/md.md"),
-    x: str = Body(..., description="", example="")
-):
-    from spark.Spark_trans import 解析PDF
-    print(filename)
-    save_path = filename[:-12]
-    print(save_path)
-    title = save_path.split('/')[-1]
-    print(title)
-    
-    try:
-        解析PDF(filename, save_path)
-        
-        db = Database(**config)
-        db.update("gcarticles", {"translated": 1}, "name='"+title+"'")
-        return {"success": 1}
-    except FileNotFoundError:
-        return {"error": "File not found."}     
-        
-def search_spark_translate(
-    filename: str = Body(..., description="path", example="/home/huawei/nxy/bbft/ChatPaper/export/In-context Autoencoder for Context Compression in a Large Language Model/md.md"),
-    x: str = Body(..., description="", example="")
-):
-    from spark.Spark_trans import 解析PDF
-    print(filename)
-    save_path = filename[:-12]
-    print(save_path)
-    title = save_path.split('/')[-1]
-    print(title)
-    
-    try:
-        db = Database(**config)
-        select_all = db.select_all("gcarticles", "name='"+title+"'")
-        return {"result": select_all}
-    except FileNotFoundError:
-        return {"error": "File not found."}
-    
+
 def list_articles( 
     useremail: str = Body(..., description="useremail", example="nxyqdl@163.com"),
     query: str = Body(..., description="query", example="Brain computer interface")
@@ -1061,7 +988,7 @@ def list_articles(
         return {"gcarticles": select_all}
     except FileNotFoundError:
         return {"error": "List articles error."}
-    
+        
 def count_articles(
     useremail: str = Body(..., description="useremail", example="nxyqdl@163.com"),
     x: str = Body(..., description="", example="")
@@ -1267,11 +1194,8 @@ def update_database_path(
     db = Database(**config)
     select_all = db.select_all("gcarticles")
     for item in select_all:
-        # print(item)
         # 新路径地址
         new_path = path + item[0]
-        #print(new_path)
-        #print({"path": f'{new_path}'})
         db.update("gcarticles", {"path": f'{new_path}'}, "name='"+item[0]+"'")
 
 
@@ -1298,18 +1222,6 @@ def chat_arxiv_main(
     parser.add_argument("--language", type=str, default='zh', help="The other output lauguage is English, is en")
 
     args = ArxivParams(**vars(parser.parse_args()))
-    
-    if model == "ChatGLM2":
-      openai.api_base = "http://localhost:8003/v1"
-      openai.api_key = "none"
-      max_token_num = 32000
-    else:
-      openai.api_base = "https://api.openai.com/v1"
-      openai.proxy = "http://127.0.0.1:7890"
-      #openai.api_key = "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"
-      #openai.api_key = "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"
-      openai.api_key = "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"
-      max_token_num = 4096
     
     root_path = os.getcwd() + '/'
     reader1 = Reader(key_word=args.key_word,
@@ -1358,11 +1270,6 @@ def chat_arxiv_main(
                 # db.insert("gcarticles",f"('{folder}','{folder_path}',0,'{query}','{keyword}', 0, '{useremail})")
 
     return {"num": len(user_titles) + summary_num}
-        
-        # return {"folders": folders}
-    # except Exception as e:
-    #     print("error")
-    #     return {"num": "Error."}
 
 
 # 文献综述相关函数
@@ -1696,6 +1603,9 @@ class LiteratureReview:
         print(data_dict)
         return data_dict
 
+################################
+# 此函数对应后端涉及思维图优化，暂未公开
+################################
     def summary_of_sections(self, username, query, keyword, selectmethod):
         # 目标URL
         url = 'http://119.3.238.159:8010/v1/summarykey'  # 替换成您要访问的实际URL
@@ -2175,8 +2085,6 @@ if __name__ == '__main__':
     app.post("/v1/deleteredundance", response_model="")(delete_redundance)
     app.post("/v1/updatedatabase", response_model="")(update_database)
     app.post("/v1/updatedatabasepath", response_model="")(update_database_path)
-    app.post("/v1/sparktranslate", response_model="")(spark_translate)
-    app.post("/v1/searchsparktranslate", response_model="")(search_spark_translate)
 
     # 文献综述相关
     app.post("/v1/showwordcloud", response_model="")(show_wordcloud)
@@ -2196,6 +2104,3 @@ if __name__ == '__main__':
     app.websocket("/ws/literature")(literature_review_ws)
     uvicorn.run(app, host="0.0.0.0", port=8008)
 
-    #start_time = time.time()
-    #chat_arxiv_main(args=arxiv_args)
-    #print("summary time:", time.time() - start_time)
