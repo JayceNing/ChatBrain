@@ -79,13 +79,8 @@ export default {
 
 
   },
-  // mounted() {
-  //
-  //
-  // },
+
   updated() {
-    // console.log("app updated")
-    // console.log(globalVariables.login)
     this.login = globalVariables.login
     if (this.login){
       this.queryMoney()
@@ -94,8 +89,6 @@ export default {
   },
   methods: {
       handleUpdateData(newData) {
-          // console.log("dddddddddddddddddddd")
-          // console.log(newData)
           this.currentPage = newData;
       },
     toHome() {
@@ -104,7 +97,8 @@ export default {
 
 
     queryMoney(){
-      const content_generate_url = 'http://119.3.238.159:8008'
+      // 此处是文献综述系统后端地址，即 chat_server/main.py 中对应服务。应为服务器地址加对应端口号 'http://XX.XX.XX.XX:8008'
+      const content_generate_url = ''
       let data = {
           "useremail": globalVariables.userBasic.Email,
           "x": ""

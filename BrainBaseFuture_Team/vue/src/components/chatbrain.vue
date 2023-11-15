@@ -496,8 +496,12 @@ const client = axios.create({
     baseURL: 'http://10.112.224.75:8000'
 });
 
-const content_generate_url = 'http://119.3.238.159:8008'
-const got_url = 'http://119.3.238.159:8010'
+// 此处是文献综述系统后端地址，即 chat_server/main.py 中对应服务。应为服务器地址加对应端口号 'http://XX.XX.XX.XX:8008'
+const content_generate_url = ''
+
+// 此处是思维图优化后端地址，目前该部分后端代码暂未公开
+const got_url = ''
+
 const data_root_path = '/root/bbft/ChatPaper/export/'
 
 client.interceptors.request.use(config => {

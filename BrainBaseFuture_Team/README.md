@@ -4,6 +4,24 @@
 
 ## 注意事项
 
+### 前端服务器配置
+
+修改 ./vue/src/components/chatbrain.vue 代码第 500 行
+
+将地址修改为文献综述系统 IP 地址端口号
+```
+// 此处是文献综述系统后端地址，即 chat_server/main.py 中对应服务。应为服务器地址加对应端口号 'http://XX.XX.XX.XX:8008'
+const content_generate_url = ''
+```
+
+修改 ./vue/src/App.vue 代码第 101 行，修改同上
+```
+// 此处是文献综述系统后端地址，即 chat_server/main.py 中对应服务。应为服务器地址加对应端口号 'http://XX.XX.XX.XX:8008'
+const content_generate_url = ''
+```
+
+### 验证码服务器配置
+
 对于验证码发送功能，需要修改发送验证码的邮箱地址
 
 修改 ./config/config.go 配置文件
