@@ -3,6 +3,15 @@
 这里是脑基未来团队管理系统的前后端代码，本系统已合并至 [ChatBrain](https://github.com/JayceNing/ChatBrain)
 
 ## 注意事项
+### 大语言模型（星火）Key配置
+
+修改 ./vue/.env 文件
+
+```
+VITE_APP_SPARK_API_KEY=12bd2d6d5e3324c491af8b0002c2a397
+VITE_APP_SPARK_API_SECRET=Y2UwZDg5ZGVmY2U5Y2Y0OTE0OGNhOGU1
+VITE_APP_SPARK_API_APPID=cd72ab24
+```
 
 ### 前端服务器配置
 
