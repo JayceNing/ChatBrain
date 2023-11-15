@@ -125,6 +125,20 @@ python main.py
 
 密码：123456
 
+## 贡献者
+
+<a href="https://github.com/JayceNing/ChatBrain/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=JayceNing/ChatBrain" />
+</a>
+
+Jayce Ning
+
+个人主页：https://jaycening.github.io/zh-cn/
+
+Github：https://github.com/JayceNing
+
+知乎：https://www.zhihu.com/people/XinyuNing
+
 ## 项目引用
 
 如果你觉得这个仓库很有价值，请给它打个星!

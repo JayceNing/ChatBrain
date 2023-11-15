@@ -139,6 +139,20 @@ Test account: nxyqdl@163.com
 
 Password: 123456
 
+## Contributor
+
+<a href="https://github.com/JayceNing/ChatBrain/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=JayceNing/ChatBrain" />
+</a>
+
+Jayce Ning
+
+Home Page：https://jaycening.github.io/zh-cn/
+
+Github：https://github.com/JayceNing
+
+ZhiHu：https://www.zhihu.com/people/XinyuNing
+
 ## Citations
 
 If you find this repository valuable, please give it a star!
