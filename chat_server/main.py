@@ -30,6 +30,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from SparkApi_none_stream import create as SparkCreate
 
 OPENAI_API_KEY = ""
+SERVER_ADDRESS = ''  # 服务器地址
 
 ArxivParams = namedtuple(
     "ArxivParams",
@@ -1653,7 +1654,6 @@ class LiteratureReview:
         These keywords are summarized from Arxiv website in the {area} field:
         {info}"""
         info = show_keywords_frequency_bar(username, query)
-        print("sssssssssssssssssssss")
         img_path = info["path_en"]
         info = info["res"]
         print(info)
@@ -1760,19 +1760,19 @@ class LiteratureReview:
         htmls.append('\n')
         res, img_path = self.summary_num_of_publication_per_year(self.username, self.query, None)
         shutil.copy2(img_path, target_directory)
-        htmls.append('![](http://119.3.238.159/temp/' + folder_name +'/' + img_path.split('/')[-1] + ')')
+        htmls.append('![](' + SERVER_ADDRESS + '/temp/' + folder_name +'/' + img_path.split('/')[-1] + ')')
         htmls.append('\n')
         htmls.append(res)
         htmls.append('\n')
         res, img_path = self.summary_key_frequency(self.username, self.query, None)
         shutil.copy2(img_path, target_directory)
-        htmls.append('![](http://119.3.238.159/temp/' + folder_name +'/' + img_path.split('/')[-1] + ')')
+        htmls.append('![](' + SERVER_ADDRESS + '/temp/' + folder_name +'/' + img_path.split('/')[-1] + ')')
         htmls.append('\n')
         htmls.append(res)
         htmls.append('\n')
         res, img_path = self.summary_timeline(self.username, self.query, None)
         shutil.copy2(img_path, target_directory)
-        htmls.append('![](http://119.3.238.159/temp/' + folder_name +'/' + img_path.split('/')[-1] + ')')
+        htmls.append('![](' + SERVER_ADDRESS + '/temp/' + folder_name +'/' + img_path.split('/')[-1] + ')')
         htmls.append('\n')
         htmls.append(res)
         htmls.append('\n')
@@ -1865,7 +1865,7 @@ async def literature_review_ws(websocket: WebSocket):
             prompt, img_path = literatureReview.summary_num_of_publication_per_year(literatureReview.username, literatureReview.query, "spark")
             shutil.copy2(img_path, target_directory)
 
-            imgsrc = 'http://119.3.238.159/temp/' + useremail +'/' + folder_name + '/' + img_path.split('/')[-1]
+            imgsrc = SERVER_ADDRESS + '/temp/' + useremail +'/' + folder_name + '/' + img_path.split('/')[-1]
             await websocket.send_text('\n')
             await websocket.send_text('![]('+imgsrc+')')
             # await websocket.send_text('<img src=" '+imgsrc+' " alt="Remote Image">')
@@ -1879,7 +1879,7 @@ async def literature_review_ws(websocket: WebSocket):
 
             prompt, img_path = literatureReview.summary_key_frequency(literatureReview.username, literatureReview.query, "spark")
             shutil.copy2(img_path, target_directory)
-            imgsrc = 'http://119.3.238.159/temp/' + useremail +'/' + folder_name + '/' + img_path.split('/')[-1]
+            imgsrc = SERVER_ADDRESS + '/temp/' + useremail +'/' + folder_name + '/' + img_path.split('/')[-1]
             await websocket.send_text('\n')
             await websocket.send_text('![]('+imgsrc+')')
             await websocket.send_text('\n')
@@ -1892,7 +1892,7 @@ async def literature_review_ws(websocket: WebSocket):
 
             prompt, img_path = literatureReview.summary_timeline(literatureReview.username, literatureReview.query, "spark")
             shutil.copy2(img_path, target_directory)
-            imgsrc = 'http://119.3.238.159/temp/' + useremail +'/' + folder_name + '/' + img_path.split('/')[-1]
+            imgsrc = SERVER_ADDRESS + '/temp/' + useremail +'/' + folder_name + '/' + img_path.split('/')[-1]
             await websocket.send_text('\n')
             await websocket.send_text('![]('+imgsrc+')')
             await websocket.send_text('\n')

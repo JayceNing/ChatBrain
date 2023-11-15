@@ -85,6 +85,11 @@ cd ./chat_server
 pip install -r requirements.txt
 ```
 
+修改服务器 IP 地址为实际部署的 IP
+```
+SERVER_ADDRESS = ''  # 替换为你的IP地址
+```
+
 使用如下命令启动服务
 
 ```
