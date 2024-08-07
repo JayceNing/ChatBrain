@@ -129,6 +129,9 @@ To use the Spark model, you need to configure the API key in the respective loca
 ./chat_server/SparkApi_none_stream.py
 ./chat_server/SparkWS.py
 
+### Environment Configuration Tutorial
+For a more detailed environment configuration tutorial, please refer to https://github.com/JayceNing/ChatBrain/blob/master/docs/environment_setup.md
+
 ## Quick Start
 
 This application is deployed to the public network.

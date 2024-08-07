@@ -115,6 +115,9 @@ python main.py
 * ./chat_server/SparkApi_none_stream.py
 * ./chat_server/SparkWS.py
 
+### 环境配置教程
+更详细的环境配置教程可参见 https://github.com/JayceNing/ChatBrain/blob/master/docs/environment_setup.md
+
 ## 快速使用
 
 本应用已部署至公网
