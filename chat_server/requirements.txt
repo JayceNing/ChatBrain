@@ -17,5 +17,6 @@ sphinx-markdown-tables
 sphinxemoji
 recommonmark
 sphinx-book-theme
-websocket
+websocket-client
 pymysql
+wordcloud
