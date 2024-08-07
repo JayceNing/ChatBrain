@@ -133,7 +133,7 @@ To use the Spark model, you need to configure the API key in the respective loca
 
 This application is deployed to the public network.
 
-Visit http://119.3.238.159:5173/
+Visit http://121.43.42.18:5173/
 
 Test account: nxyqdl@163.com
 
