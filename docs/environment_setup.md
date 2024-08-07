@@ -49,6 +49,14 @@ Modify ```./vue/src/components/chatbrain.vue``` line 500.
 // 此处是文献综述系统后端地址，即 chat_server/main.py 中对应服务。应为服务器地址加对应端口号 'http://XX.XX.XX.XX:8008'
 const content_generate_url = ''
 ```
+```./vue/src/components/chatbrain.vue``` line 937.
+```vue
+const socket = new WebSocket("ws://XX.XX.XX.XX:8008/ws");
+```
+```./vue/src/components/chatbrain.vue``` line 1028.
+```vue
+const socket = new WebSocket("ws://XX.XX.XX.XX:8008/ws/literature?useremail=" + globalVariables.userBasic.Email +"&query=" + this.selectedQuery + "&keyword=None&selectmethod=" + this.selectedselectmethod);
+```
 Modify ```./vue/src/App.vue``` line 101.
 ```vue
 // 此处是文献综述系统后端地址，即 chat_server/main.py 中对应服务。应为服务器地址加对应端口号 'http://XX.XX.XX.XX:8008'
