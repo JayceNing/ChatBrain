@@ -127,6 +127,15 @@ Verify Installation.
 sudo systemctl status redis-server
 redis-cli
 ```
+#### Verification code server configuration
+Modify ```./BrainBaseFuture_Team/config/config.go```
+
+Change the email address for sending the verification code, taking QQ mailbox SMTP service as an example. Detail can be found at https://wx.mail.qq.com/list/readtemplate?name=app_intro.html#/agreement/authorizationCode
+```go
+# 此处配置用于发送验证码的邮箱地址
+var MailAddress = ""  # 修改为邮箱地址（QQ邮箱）
+var MailPassword = ""  # 修改为邮箱密码（QQ邮箱）
+```
 
 #### Initial the service
 ```sh
