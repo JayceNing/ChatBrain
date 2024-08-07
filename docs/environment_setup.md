@@ -29,6 +29,7 @@ npm install
 ```
 
 ### Frontend Pages
+#### IP Address Modify
 Modify the IP address in the configuration file ```./BrainBaseFuture_Team/vue/package.json```
 ```json
   "scripts": {
@@ -37,6 +38,24 @@ Modify the IP address in the configuration file ```./BrainBaseFuture_Team/vue/pa
     "preview": "vite preview"
   },
 ```
+Change ip address for *vue* web to connect Go system (Account Management System). Modify file ```./BrainBaseFuture_Team/vue/.env```
+```
+VITE_APP_BASE_URL=http://XX.XX.XX.XX:1016/  # Your IP Address
+```
+To connect Python System (Literature Review System).
+
+Modify ```./vue/src/components/chatbrain.vue``` line 500.
+```vue
+// 此处是文献综述系统后端地址，即 chat_server/main.py 中对应服务。应为服务器地址加对应端口号 'http://XX.XX.XX.XX:8008'
+const content_generate_url = ''
+```
+Modify ```./vue/src/App.vue``` line 101.
+```vue
+// 此处是文献综述系统后端地址，即 chat_server/main.py 中对应服务。应为服务器地址加对应端口号 'http://XX.XX.XX.XX:8008'
+const content_generate_url = ''
+```
+
+
 #### Initial the service
 ```sh
 npm run dev
@@ -107,6 +126,8 @@ cd ./BrainBaseFuture_Team
 go run main.go route.go
 ```
 
+*Note*: Make sure that your server has port 1016 open, or you might meet CORS error.
+
 ## Python
 Package installation. 
 
@@ -142,3 +163,5 @@ Spark_url = "ws://spark-api.xf-yun.com/v1.1/chat"  # v1.5环境的地址
 cd ./chat_server
 python main.py
 ```
+
+*Note*: Make sure that your server has port 8008 open, or you might meet CORS error.
