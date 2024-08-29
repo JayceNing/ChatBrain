@@ -30,7 +30,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from SparkApi_none_stream import create as SparkCreate
 
 OPENAI_API_KEY = ""
-SERVER_ADDRESS = ''  # 服务器地址
+SERVER_ADDRESS = '172.29.151.201'  # 服务器地址
 
 ArxivParams = namedtuple(
     "ArxivParams",
@@ -1223,7 +1223,7 @@ def chat_arxiv_main(
     parser.add_argument("--language", type=str, default='zh', help="The other output lauguage is English, is en")
 
     args = ArxivParams(**vars(parser.parse_args()))
-    
+    max_token_num = 4096
     root_path = os.getcwd() + '/'
     reader1 = Reader(key_word=args.key_word,
                      query=args.query,
@@ -1337,10 +1337,13 @@ def show_num_of_publication_per_year(
     
     for file_name in subdirectories:
         file_path = file_name + '/md.md'
-        with open(file_path, "r", encoding="utf-8") as file:
-            md_content = file.read()
-            time, keywords = extract_info_from_md(md_content)
-            md_files_info.append((time, keywords))
+        try:
+            with open(file_path, "r", encoding="utf-8") as file:
+                md_content = file.read()
+                time, keywords = extract_info_from_md(md_content)
+                md_files_info.append((time, keywords))
+        except:
+            pass
 
     pubulication_num_per_year = cul_paper_num_per_month(md_files_info)
     save_path = draw_pub_num_per_year_bar(pubulication_num_per_year, query, useremail)
